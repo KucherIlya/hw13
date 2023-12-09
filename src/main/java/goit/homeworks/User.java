@@ -1,4 +1,4 @@
-package IK.http;
+package goit.homeworks;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

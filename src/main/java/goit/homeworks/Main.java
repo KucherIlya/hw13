@@ -1,11 +1,10 @@
-package IK.http;
+package goit.homeworks;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         JsonPlaceholderHttpService jsonPlaceholderHttpService = new JsonPlaceholderHttpService();
 
         NewUser newUer = new NewUser();
@@ -16,7 +15,6 @@ public class Main {
         getUserMethodsAndTests(jsonPlaceholderHttpService, 2);
         createJsonWithCommentsWithCommentsOfPost(jsonPlaceholderHttpService, 1);
         getUncompletedUserToDoTasksById(jsonPlaceholderHttpService, 1);
-
     }
 
     private static void getUncompletedUserToDoTasksById(JsonPlaceholderHttpService jsonPlaceholderHttpService, long id) {
@@ -36,7 +34,6 @@ public class Main {
         List<User> users = jsonPlaceholderHttpService.getAllUsers();
         System.out.println("Отримано " + users.size() + " юзерів з імейлами: ");
         users.forEach(user -> System.out.println(user.getEmail() + " "));
-
     }
 
     private static void createMethodAndTest(JsonPlaceholderHttpService jsonPlaceholderHttpService, NewUser newUer) {

@@ -1,4 +1,4 @@
-package IK.http;
+package goit.homeworks;
 
 public class Task {
     private Long userId;

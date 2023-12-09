@@ -1,4 +1,4 @@
-package IK.http;
+package goit.homeworks;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -127,7 +127,7 @@ public class JsonPlaceholderHttpService {
             HttpRequest postsRequest = HttpRequest.newBuilder()
                     .uri(URI.create(BASE_URL + USERS + "/" + userId + POSTS))
                     .build();
-            HttpResponse<String> postsResponse = client.send(postsRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> postsResponse = client.send(postsRequest, BodyHandlers.ofString());
             posts = Utils.parseObjectsJson(postsResponse.body(), new TypeReference<List<Post>>() {});
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e.getMessage(), e);
@@ -139,7 +139,7 @@ public class JsonPlaceholderHttpService {
             HttpRequest commentsRequest = HttpRequest.newBuilder()
                     .uri(URI.create(BASE_URL + POSTS + "/" + lastPostId + "/comments"))
                     .build();
-            HttpResponse<String> commentsResponse = client.send(commentsRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> commentsResponse = client.send(commentsRequest, BodyHandlers.ofString());
             Path path = Paths.get("user-" + userId + "-post-" + lastPostId + "-comments.json");
             System.out.println("Файл " + path + " буде створено і буде мати записи про коментарі з останнього поста який належить юзеру з id " + userId);
             Files.writeString(path, commentsResponse.body());
@@ -155,7 +155,7 @@ public class JsonPlaceholderHttpService {
             HttpRequest todosRequest = HttpRequest.newBuilder()
                     .uri(URI.create(BASE_URL + USERS + "/" + userId + "/todos?completed=false"))
                     .build();
-            todosResponse = client.send(todosRequest, HttpResponse.BodyHandlers.ofString());
+            todosResponse = client.send(todosRequest, BodyHandlers.ofString());
             return Utils.parseObjectsJsonArray(todosResponse.body(), new TypeReference<Task[]>() {});
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e.getMessage(), e);
